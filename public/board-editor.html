@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Board editor — Dragon's Den III</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@700;900&family=Source+Serif+4:opsz,wght@8..60,400;8..60,600;8..60,700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="/css/style.css" />
+  <link rel="stylesheet" href="/css/editor.css" />
+</head>
+<body class="editor-body">
+  <aside class="editor-side">
+    <h1>Board editor</h1>
+    <p class="hint">Click a tile to drop a space. Drag to nudge. Chain-place follows the diamonds as you click along a path.</p>
+
+    <div class="mode-row" id="modes">
+      <button type="button" data-mode="place" class="on">Place</button>
+      <button type="button" data-mode="link">Link</button>
+      <button type="button" data-mode="unlink">Unlink</button>
+    </div>
+    <label class="check"><input type="checkbox" id="chain" checked /> Chain-link as I place</label>
+    <label class="check"><input type="checkbox" id="labels" checked /> Show labels</label>
+
+    <div class="type-row">
+      <span>New space type</span>
+      <select id="newType">
+        <option value="path">Path</option>
+        <option value="room">Room (door)</option>
+        <option value="start">Start</option>
+        <option value="dragon">Dragon</option>
+      </select>
+    </div>
+
+    <div class="stats" id="stats"></div>
+
+    <div class="sel" id="selBox">
+      <h2>Selected</h2>
+      <p class="muted" id="noneSel">Click a marker.</p>
+      <div id="selFields" hidden>
+        <label>Id <input id="selId" /></label>
+        <label>Type
+          <select id="selType">
+            <option value="path">Path</option>
+            <option value="room">Room (door)</option>
+            <option value="start">Start</option>
+            <option value="dragon">Dragon</option>
+          </select>
+        </label>
+        <label>X% <input id="selX" type="number" step="0.1" /></label>
+        <label>Y% <input id="selY" type="number" step="0.1" /></label>
+        <div class="chit-row">
+          <label>Red <input id="selRed" type="number" min="0" max="6" /></label>
+          <label>Yellow <input id="selYellow" type="number" min="0" max="6" /></label>
+        </div>
+        <p class="muted" id="selNext"></p>
+        <button type="button" class="danger" id="delSel">Delete space</button>
+      </div>
+    </div>
+
+    <div class="cats">
+      <h2>Cat spawns</h2>
+      <label>Nox <select id="catAngel"></select></label>
+      <label>Griselbrand <select id="catAlex"></select></label>
+      <label>Dazzler <select id="catLily"></select></label>
+    </div>
+
+    <div class="actions">
+      <button type="button" class="primary" id="save">Save to game</button>
+      <button type="button" id="loadLive">Load live board</button>
+      <button type="button" id="blank">Start blank</button>
+      <button type="button" id="undo">Undo</button>
+    </div>
+    <p class="status" id="status"></p>
+    <p class="keys">Keys: Esc cancel · Delete remove · Ctrl+Z undo · 1 path · 2 room</p>
+    <p class="back"><a href="/">← Back to the den</a></p>
+  </aside>
+  <main class="editor-main">
+    <div class="board-frame" id="frame">
+      <img src="/assets/DD3-Board.png" alt="Dragon's Den III board" id="boardImg" draggable="false" />
+      <svg id="linkSvg" viewBox="0 0 100 100" preserveAspectRatio="none">
+        <defs>
+          <marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="5" markerHeight="5" orient="auto-start-reverse">
+            <path d="M 0 0 L 10 5 L 0 10 z" fill="#7dffb1" />
+          </marker>
+        </defs>
+        <g id="linkLines"></g>
+        <line id="ghost" x1="0" y1="0" x2="0" y2="0" hidden />
+      </svg>
+      <div id="marks"></div>
+    </div>
+  </main>
+  <script src="/js/board-editor.js"></script>
+</body>
+</html>

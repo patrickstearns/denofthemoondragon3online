@@ -11,15 +11,22 @@ npm start
 
 Open [http://localhost:3000](http://localhost:3000) (or whichever `PORT` you set). Share that URL on your LAN, or tunnel it (`ngrok http 3000`, Cloudflare Tunnel, etc.).
 
-## Deploy (Render / Railway / Fly)
+## Deploy on Render
 
-This is a single web service. Set `PORT` if 3000 is already taken (`set PORT=3010` on Windows PowerShell, `PORT=3010 npm start` on Unix). Example start command: `npm start`.
+This is one Node web service (`npm start`). It reads `PORT` from the environment and listens on `0.0.0.0`. WebSockets stay on (Socket.io). There is no database; the lobby lives in memory, so keep **one instance** and expect a restart to wipe in-progress games.
 
-- Enable WebSockets on the host.
-- Root directory is this project.
-- Node 18+.
+`render.yaml` is a Render Blueprint. After the repo is on GitHub:
 
-No database. Games live in memory; a restart wipes the lobby.
+1. Push `main` to [github.com/patrickstearns/denofthemoondragon3online](https://github.com/patrickstearns/denofthemoondragon3online).
+2. In [Render](https://dashboard.render.com/), **New +** → **Blueprint**.
+3. Connect that GitHub repo. Render reads `render.yaml` and creates a free web service named `denofthemoondragon3`.
+4. When the deploy is live, open `https://denofthemoondragon3.onrender.com`.
+
+Or skip the Blueprint: **New +** → **Web Service**, connect the repo, set **Build** to `npm install`, **Start** to `npm start`, **Health Check Path** to `/health`, and Node 20.
+
+Free instances sleep after idle time; the first visit can take a minute to wake. For a game night, a paid instance stays up.
+
+Locally, set `PORT` if 3000 is taken (`PORT=3010 npm start`).
 
 ## How to play
 

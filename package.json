@@ -1,0 +1,21 @@
+{
+  "name": "dragons-den-iii",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Dragon's Den III — online HTML5 board game for up to four players",
+  "main": "server/index.js",
+  "scripts": {
+    "start": "node server/index.js",
+    "dev": "node server/index.js"
+  },
+  "engines": {
+    "node": "20.x"
+  },
+  "dependencies": {
+    "express": "^4.21.2",
+    "socket.io": "^4.8.1"
+  },
+  "devDependencies": {
+    "socket.io-client": "^4.8.3"
+  }
+}
