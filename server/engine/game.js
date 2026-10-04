@@ -1391,11 +1391,12 @@ function applyCombatOutcome(state) {
     return;
   }
   if (win) {
-    state.board[p.loc].red = Math.max(0, state.board[p.loc].red - 1);
+    const cell = state.board[p.loc];
+    if (cell) cell.red = Math.max(0, cell.red - 1);
     log(state, auto === "win"
       ? `${p.name} auto-wins vs ${def.name} (${pcs}+1=${total} vs ${dcs}).`
       : `${p.name} beats ${def.name} (${pcs}+${roll}=${total} vs ${dcs}).`, p.seat);
-    const more = p.status === "active" && state.board[p.loc].red > 0;
+    const more = p.status === "active" && !!(cell && cell.red > 0);
     const loot = more || p.status !== "active" ? [] : drawRoomLoot(state, p);
     const hold = loot.length ? COMBAT_LOOT_MS : COMBAT_RESULT_MS;
     state.combatResult = {
@@ -1826,7 +1827,9 @@ function applyScroll(state, p, defId, extra) {
       const pile = [];
       for (const o of act) pile.push(...o.hand.splice(0));
       const shuffled = shuffle(state.rng, pile);
+      if (!act.length) return { ok: true };
       let i = act.findIndex((x) => x.seat === p.seat);
+      if (i < 0) i = 0;
       for (const card of shuffled) {
         act[i % act.length].hand.push(card);
         i += 1;
@@ -2553,6 +2556,24 @@ function createMatch({ id, name, seats, rngSeed }) {
   };
   // bind rng without serializing the function on clones we send
   Object.defineProperty(state, "rng", { value: rng, enumerable: false, writable: true });
+
+  const preassigned = seats.every((s) => s.characterId && getCharacter(s.characterId));
+  if (preassigned) {
+    for (const s of seats) {
+      const p = players.find((x) => x.seat === s.seat);
+      const ch = getCharacter(s.characterId);
+      p.characterId = ch.id;
+      p.maxHp = ch.health;
+      p.hp = ch.health;
+      if (p.isAI) p.name = ch.name;
+      log(state, `${p.name} is ${ch.name} the ${ch.className}.`, p.seat);
+    }
+    const first = pick(rng, players);
+    log(state, `${first.name} goes first.`);
+    state.firstSeat = first.seat;
+    dealBoard(state);
+    return state;
+  }
 
   const dragons = players.filter((p) => String(p.name).toLowerCase() === "dragon");
   if (dragons.length) {
