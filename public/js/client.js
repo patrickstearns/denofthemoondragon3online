@@ -224,6 +224,7 @@
     state.handView = null;
     state.handViewKey = "";
     closeGear();
+    closeHowToPlay();
     render();
   }
 
@@ -263,6 +264,44 @@
       returnToLobby();
     };
     wrap.onclick = (e) => e.stopPropagation();
+  }
+
+  function howToPlayLayer() {
+    let layer = document.getElementById("howToPlay");
+    if (layer) return layer;
+    layer = el(`<div class="howto-layer" id="howToPlay" hidden>
+      <div class="howto-card">
+        <div class="howto-bar">
+          <h2>How to play</h2>
+          <button type="button" class="howto-close" id="howToPlayClose">Close</button>
+        </div>
+        <iframe class="howto-frame" title="Dragon's Den III instruction sheet" src="/how-to-play.html"></iframe>
+      </div>
+    </div>`);
+    document.body.appendChild(layer);
+    layer.querySelector("#howToPlayClose").onclick = (e) => {
+      e.stopPropagation();
+      closeHowToPlay();
+    };
+    layer.onclick = (e) => {
+      if (e.target === layer) closeHowToPlay();
+    };
+    return layer;
+  }
+
+  function bindHowToPlayBtn(root) {
+    const btn = root.querySelector("#howToPlayBtn");
+    if (btn) btn.onclick = () => openHowToPlay();
+  }
+
+  function openHowToPlay() {
+    closeGear();
+    howToPlayLayer().hidden = false;
+  }
+
+  function closeHowToPlay() {
+    const layer = document.getElementById("howToPlay");
+    if (layer) layer.hidden = true;
   }
 
   if (!window.__dd3GearDoc) {
@@ -342,7 +381,10 @@
     const root = el(`<div class="screen">
       <div class="topbar">
         <h2>Den of the Moon Dragon III</h2>
-        <div class="who">logged in as ${esc(state.name)}</div>
+        <div class="topbar-acts">
+          <button type="button" id="howToPlayBtn">How to play</button>
+          <div class="who">logged in as ${esc(state.name)}</div>
+        </div>
       </div>
       <div class="lobby">
         <div class="panel">
@@ -388,6 +430,7 @@
       a.appendChild(el(`<div class="game-row"><div><strong>${esc(g.name)}</strong><div class="muted">${g.status}</div></div><span class="muted">In play</span></div>`));
     });
     root.querySelector("#create").onclick = () => emit("game:create");
+    bindHowToPlayBtn(root);
     return root;
   }
 
@@ -395,11 +438,12 @@
     const room = state.room;
     const youCreator = room.creatorId === state.playerId;
     const root = el(`<div class="screen">
-      <div class="topbar">
+      <div class="topbar topbar-has-gear">
         <h2>${esc(room.name)}</h2>
-        <div>
+        <div class="topbar-acts">
+          <button type="button" id="howToPlayBtn">How to play</button>
           <span class="who">${esc(state.name)}</span>
-          <button id="leave" class="danger" style="margin-left:.6rem">Leave</button>
+          <button id="leave" class="danger">Leave</button>
         </div>
       </div>
       <div class="center" style="align-items:stretch">
@@ -445,6 +489,7 @@
     };
     const start = root.querySelector("#start");
     if (start) start.onclick = () => emit("game:start", { gameId: room.id });
+    bindHowToPlayBtn(root);
     return root;
   }
 
