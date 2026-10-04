@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Dragon's Den III — How to Play</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@700;900&family=Source+Serif+4:opsz,wght@8..60,400;8..60,600;8..60,700&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --ink: #2a1810;
+      --rule: #8a6a3a;
+      --gold: #6a4a1c;
+      --paper: #f3e6c9;
+      --paper-2: #e8d4a8;
+    }
+    * { box-sizing: border-box; }
+    html, body {
+      margin: 0;
+      background: var(--paper);
+      color: var(--ink);
+      font-family: "Source Serif 4", Georgia, serif;
+      font-size: 15.5px;
+      line-height: 1.42;
+    }
+    .sheet {
+      max-width: 52rem;
+      margin: 0 auto;
+      padding: 1.6rem 1.7rem 2.4rem;
+      background:
+        linear-gradient(180deg, rgba(255, 248, 230, 0.55), transparent 8rem),
+        var(--paper);
+    }
+    header.mast {
+      text-align: center;
+      border-bottom: 3px double var(--gold);
+      padding-bottom: 0.85rem;
+      margin-bottom: 1.15rem;
+    }
+    header.mast p.brand {
+      margin: 0 0 0.2rem;
+      letter-spacing: 0.28em;
+      text-transform: uppercase;
+      font-size: 0.72rem;
+      color: var(--gold);
+    }
+    h1 {
+      font-family: "Cinzel Decorative", serif;
+      font-size: 1.85rem;
+      margin: 0 0 0.25rem;
+      color: #3a2010;
+    }
+    header.mast .sub {
+      margin: 0;
+      font-style: italic;
+      color: #5a3a22;
+    }
+    h2 {
+      font-family: "Cinzel Decorative", serif;
+      font-size: 1.02rem;
+      letter-spacing: 0.04em;
+      color: #3a2010;
+      border-bottom: 1px solid var(--rule);
+      margin: 1.35rem 0 0.5rem;
+      padding-bottom: 0.15rem;
+    }
+    h3 {
+      font-size: 1rem;
+      margin: 0.85rem 0 0.3rem;
+      color: #3a2010;
+    }
+    p { margin: 0 0 0.55rem; }
+    ul, ol { margin: 0 0 0.65rem; padding-left: 1.25rem; }
+    li { margin: 0 0 0.28rem; }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 0.4rem 0 0.8rem;
+      font-size: 0.92rem;
+    }
+    th, td {
+      border: 1px solid #c9b48a;
+      padding: 0.28rem 0.4rem;
+      text-align: left;
+      vertical-align: top;
+    }
+    th { background: #e4cc96; font-weight: 700; }
+    .note {
+      font-size: 0.92rem;
+      font-style: italic;
+      color: #5a3a22;
+    }
+    .box {
+      border: 1px solid var(--rule);
+      background: rgba(228, 204, 150, 0.35);
+      padding: 0.55rem 0.7rem;
+      margin: 0.55rem 0 0.75rem;
+    }
+    footer.colophon {
+      margin-top: 1.6rem;
+      padding-top: 0.7rem;
+      border-top: 3px double var(--gold);
+      text-align: center;
+      font-size: 0.82rem;
+      color: #5a3a22;
+    }
+  </style>
+</head>
+<body>
+  <article class="sheet">
+    <header class="mast">
+      <p class="brand">Jovian Games</p>
+      <h1>Dragon's Den III</h1>
+      <p class="sub">Rules of Play &nbsp;·&nbsp; 2 to 4 cutthroat adventurers</p>
+    </header>
+
+    <p>You are not heroes. Each of you did something - maybe you got drunk in a tavern and killed some douche in a fight, or "garnished" church donations, or sold illegal potions to minors you could have sworn were "miners", but regardless, you did something, you got caught, and now the law has thrown you into the notorious Dragon's Den!  If you can escape with your life, you can go free!  Undercut the others and manipulate those who live within to overcome the Dragon and escape with your life, and all the loot you can carry!
+
+    <h2>Object</h2>
+    <p>Escape the Dragon's Den alive, and with the most valuable loot!</p>
+
+    <h2>Contents</h2>
+    <ul>
+      <li>1 game board (entrance, winding tunnels, rooms, cats' boxes, and the Dragon's hoard)</li>
+      <li>24 Room cards</li>
+      <li>26 Denizen cards</li>
+      <li>Loot cards: Treasures (gold and gewgaws) and Spell Scrolls</li>
+      <li>4 Character cards and matching pawns: Clarice the Cleric, Wanda the Wizard, Rollo the Rogue, Barry the Barbarian</li>
+      <li>3 cat figures: <b>Nox</b> (black), <b>Griselbrand</b> (gray), and <b>Dazzler</b> (white)</li>
+      <li>Red Denizen chits and yellow Loot chits</li>
+      <li>Health tokens</li>
+      <li>1 six-sided die</li>
+      <li>This instruction sheet</li>
+    </ul>
+
+    <h2>Setup</h2>
+    <ol>
+      <li>Unfold the board. Shuffle the Room deck and deal one card face-down onto each room space.</li>
+      <li>Place red Denizen chits and yellow Loot chits on the spaces marked for them. Seat the three cats on their starting boxes.</li>
+      <li>Shuffle the Denizen deck and the Loot deck separately. Set the Treasure Pile aside; discarded loot goes there.</li>
+      <li><b>First player:</b> if anyone at the table is named Dragon, they go first (roll off among Dragons). Otherwise, whoever most recently pet a cat goes first.</li>
+      <li>Starting with the first player and going left, each thief chooses a character, takes that pawn, places it on the Main Entrance, and takes health tokens equal to the character's Health.</li>
+    </ol>
+
+    <h2>The Adventurers</h2>
+    <p>Each character card lists <b>Health</b>, <b>Strength</b>, <b>Might</b>, and <b>Guile</b>. 
+    <list>
+      <li>Health is how many times you may be wounded in combat. If it reaches zero, you're dead and out of the game.</li>
+      <li>Strength is how many Loot cards you may carry (encumbrance). If you ever hold more cards than your Strength, discard down immediately.</li>
+      <li>Might and Guile are how good you are at head-on contests of strength or of skill, respectively.</li>      
+    </list>  
+    <table>
+      <thead>
+        <tr><th>Class</th><th>Name</th><th>H</th><th>Str</th><th>M</th><th>G</th><th>Special</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>Cleric</td><td>Clarice</td><td>10</td><td>4</td><td>3</td><td>3</td><td>—</td></tr>
+        <tr><td>Wizard</td><td>Wanda</td><td>4</td><td>7</td><td>3</td><td>5</td><td>—</td></tr>
+        <tr><td>Rogue</td><td>Rollo</td><td>7</td><td>10</td><td>1</td><td>3</td><td>+1 to Movement each turn</td></tr>
+        <tr><td>Barbarian</td><td>Barry</td><td>7</td><td>7</td><td>5</td><td>1</td><td>Ignore the first hit you take each round</td></tr>
+      </tbody>
+    </table>
+
+    <h2>A Player's Turn</h2>
+    <p>Play proceeds left from the first player. On your turn:</p>
+    <ol>
+      <li><b>Start Turn:</b> You may play a scroll that is legal now (Haste, and other turn scrolls). Scrolls that change a roll must be played before any dice are thrown.</li>
+      <li><b>Movement:</b> Roll the d6 and move your pawn that many spaces <i>in the direction of the arrows</i>. If you enter a room, you <b>must stop</b>, even if you have movement left.</li>
+      <li><b>Cat Moves:</b> If your movement die was a <b>1</b> or a <b>6</b>, immediately roll again to move either <b>Nox</b> or <b>Griselbrand</b> that many spaces in any direction you like. A cat that hits a thief stops and wounds that player; the player must discard loot if they have one or else lose 1HP.</li>
+      <li><b>Rooms:</b> If you stopped in a room, resolve it (see Rooms &amp; Encounters).</li>
+    </ol>
+
+    <h2>Rooms &amp; Encounters</h2>
+    <p>The first time a room is entered, flip its Room card. Follow the card: it may add or remove chits, change Combat Score, roast a treasure, or do nothing at all.</p>
+    <ol>
+      <li>
+        <b>Red chits (Denizens).</b> For each red chit, draw a Denizen and fight it. If you lose, you may either choose to:
+        <ul>
+          <li>Lost 1HP, discard that Denizen card (but the chit stays) and your turn ends</li>
+          <li>Pay HP to increase your combat score by 1 per HP spent until it's high enough to win</li>
+        </ul>
+        If you win, discard the Denizen and one red chit, then fight the next chit. When the reds are gone, go to loot.
+      </li>
+      <li>
+        <b>Yellow chits (Loot).</b> Discard every yellow chit on the space and draw that many Loot cards.
+      </li>
+    </ol>
+
+    <h2>Combat</h2>
+    <p>A Denizen card shows a score for Might, Guile, or both. Fight with the matching stat. If the card says you may choose, choose. If it says use the lower, you must.</p>
+    <p>Your <b>Combat Score</b> is:</p>
+    <p class="box"><b>your stat + the room's Combat Score modifier + any scroll effects + 1d6</b></p>
+    <p>Compare that total to the Denizen's printed score. <b>The higher total wins. Denizens win ties.</b></p>
+    <ul>
+      <li>If you already beat the Denizen before rolling the die, auto-win without rolling.
+    </ul>
+
+    <h2>The Dragon</h2>
+    <p>The last room is the Dragon's Den. The Dragon is Might 8 / Guile 8; you must use the <b>lower</b> of your Might or Guile.</p> 
+    <p>Before rolling against the Dragon, you may sacrifice loot from your sack to permanently lower the Dragon's Might or Guile by 1 per treasure sacrificed.</p>
+    <p>Beat the Dragon's score to escape. After rolling, you may still spend HP to increase your combat score.</p>
+    <p>The first player to escape the Den may draw 2 Loot. The second player to escape may draw 1. Players who have escaped (and their loot) are out of the game, and may not be targeted.</p>
+
+    <h2>DOUBLE! and In the Cup</h2>
+    <div class="box">
+      <p>Whenever the same number is rolled twice in a row for any game reason, the table races to slap <b>DOUBLE!</b> The fastest player immediately moves <b>Dazzler</b> 1d6 spaces. If that same number comes up a third time, DOUBLE may be called again.</p>
+      <p>The <b>Scroll of In the Cup</b> is played by saying “in the cup.” Everyone else must say it too. The <b>last</b> player to say it discards an item.</p>
+      <p>In the online version, these are both represented as dialogs that appear at a random location on screen - click them as fast as you can to control the cat's movement!</p>
+    </div>
+    
+    <h2>Winning</h2>
+    <p>Add up the printed gold on every Treasure you escaped with.  The thief who escaped alive with the highest total wins.  If two escapees tie, they share the glory and the argument over who really won.</p>
+  </article>
+</body>
+</html>
